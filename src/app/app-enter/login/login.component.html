@@ -1,0 +1,10 @@
+<div *ngIf="user$ | async as user">
+  <h1>Hello {{ user.displayName }}!</h1>
+  <img src={{user.photoURL}} alt="{{user.displayName}}" width="250">
+</div>
+
+<p>Please login.</p>
+<button (click)="login()">Login with Google</button>
+<br>
+<p>If you dont have an account, register now</p>
+<button>Register</button>

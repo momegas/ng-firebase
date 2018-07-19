@@ -1,0 +1,12 @@
+<p>
+  brands!
+</p>
+
+<form formGroup="brandForm">
+  <label>Name:
+    <input formControlName="name">
+  </label>
+</form>
+
+<p>Form value: {{ brandForm.value | json }}</p>
+<p>Form status: {{ brandForm.status | json }}</p>

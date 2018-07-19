@@ -5,19 +5,38 @@ import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AngularFireStorageModule } from "angularfire2/storage";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { NgxsModule } from "@ngxs/store";
+import { NgxsLoggerPluginModule } from "@ngxs/logger-plugin";
 
 import { environment } from "../environments/environment";
 import { AppComponent } from "./app.component";
+import { AppEnterModule } from "./app-enter/app-enter.module";
+import { RouterModule, Route } from "@angular/router";
+import { SharedModule } from "./shared/shared.module";
+import { DashboardModule } from "./dashboard/dashboard.module";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms"; // <-- #1 import module
+
+const routes: Route[] = [{ path: "", redirectTo: "login", pathMatch: "full" }];
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
-    NgxsModule.forRoot([]),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule // imports firebase/storage only needed for storage features
+    AngularFireStorageModule, // imports firebase/storage only needed for storage features
+
+    NgxsModule.forRoot([]),
+    NgxsLoggerPluginModule.forRoot(),
+
+    RouterModule.forRoot(routes),
+
+    AppEnterModule,
+    DashboardModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
