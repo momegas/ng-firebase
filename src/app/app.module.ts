@@ -21,8 +21,6 @@ const routes: Route[] = [{ path: "", redirectTo: "login", pathMatch: "full" }];
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
 
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features

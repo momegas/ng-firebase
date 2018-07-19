@@ -2,9 +2,13 @@
   brands!
 </p>
 
-<form formGroup="brandForm">
+<form [formGroup]="brandForm">
   <label>Name:
     <input formControlName="name">
+  </label>
+  <br>
+  <label>Slug:
+    <input formControlName="slug">
   </label>
 </form>
 
