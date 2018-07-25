@@ -21,6 +21,7 @@ export class AuthState implements NgxsOnInit {
 
   ngxsOnInit() {
     this.afAuth.user.subscribe((user: firebase.User) => {
+      if (!user) return;
       this.store.dispatch(new actions.SetUser(user));
       if (!this.activatedRoute.snapshot.firstChild.routeConfig.path.includes("dashboard")) {
         this.router.navigateByUrl("dashboard/home");
@@ -36,5 +37,13 @@ export class AuthState implements NgxsOnInit {
   @Action(actions.SetUser)
   setUser(ctx: StateContext<AuthStateModel>, { user }: actions.SetUser) {
     ctx.patchState({ user });
+  }
+
+  @Action(actions.Logout)
+  logout(ctx: StateContext<AuthStateModel>) {
+    const user = null;
+    this.afAuth.auth.signOut();
+    ctx.patchState({ user });
+    this.router.navigateByUrl("/");
   }
 }

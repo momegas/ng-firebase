@@ -5,10 +5,11 @@ import { RouterModule, Routes } from "@angular/router";
 import { NgxsModule } from "@ngxs/store";
 import { BrandsComponent } from "./brands/brands.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AuthGuard } from "../shared/guards/auth.guard";
 
 const routes: Routes = [
-  { path: "dashboard/home", component: HomeComponent },
-  { path: "dashboard/brands", component: BrandsComponent }
+  { path: "dashboard/home", component: HomeComponent, canActivate: [AuthGuard] },
+  { path: "dashboard/brands", component: BrandsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
