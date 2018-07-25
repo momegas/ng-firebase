@@ -2,7 +2,7 @@
   brands!
 </p>
 
-<form [formGroup]="brandForm">
+<form [formGroup]="brandForm" (ngSubmit)="onSubmit()">
   <label>Name:
     <input formControlName="name">
   </label>
@@ -10,7 +10,12 @@
   <label>Slug:
     <input formControlName="slug">
   </label>
+  <button type="submit" [disabled]="!this.brandForm.valid">Submit</button>
 </form>
 
-<p>Form value: {{ brandForm.value | json }}</p>
-<p>Form status: {{ brandForm.status | json }}</p>
+
+<ul>
+  <li *ngFor="let brand of (brands$ | async)">{{brand.name}}
+    <span (click)="onDelete(brand.id)">&nbsp;X</span>
+  </li>
+</ul>

@@ -6,6 +6,7 @@ import { NgxsModule } from "@ngxs/store";
 import { BrandsComponent } from "./brands/brands.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthGuard } from "../shared/guards/auth.guard";
+import { BrandState } from "./brands/brands.state";
 
 const routes: Routes = [
   { path: "dashboard/home", component: HomeComponent, canActivate: [AuthGuard] },
@@ -18,7 +19,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    NgxsModule.forFeature([])
+    NgxsModule.forFeature([BrandState])
   ],
   declarations: [HomeComponent, BrandsComponent]
 })

@@ -1,5 +1,10 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Store, Select } from "@ngxs/store";
+import { Add, Remove } from "./brands.actions";
+import { BrandState } from "./brands.state";
+import { Observable } from "rxjs";
+import { Brand } from "./brand";
 
 @Component({
   selector: "app-brands",
@@ -7,9 +12,10 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
   styleUrls: ["./brands.component.css"]
 })
 export class BrandsComponent {
-  brandForm: FormGroup;
+  public brandForm: FormGroup;
+  @Select(BrandState.brands) public brands$: Observable<Brand[]>;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.createForm();
   }
 
@@ -19,4 +25,15 @@ export class BrandsComponent {
       slug: ["", Validators.required]
     });
   }
+
+  onSubmit() {
+    this.store.dispatch(new Add(this.brandForm.value));
+    this.brandForm.reset();
+  }
+
+  onDelete(id: string) {
+    this.store.dispatch(new Remove(id));
+  }
+
+  onSubmitEdit() {}
 }

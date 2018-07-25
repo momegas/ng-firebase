@@ -23,7 +23,10 @@ export class AuthState implements NgxsOnInit {
     this.afAuth.user.subscribe((user: firebase.User) => {
       if (!user) return;
       this.store.dispatch(new actions.SetUser(user));
-      if (!this.activatedRoute.snapshot.firstChild.routeConfig.path.includes("dashboard")) {
+      if (
+        this.activatedRoute.snapshot.firstChild &&
+        !this.activatedRoute.snapshot.firstChild.routeConfig.path.includes("dashboard")
+      ) {
         this.router.navigateByUrl("dashboard/home");
       }
     });
