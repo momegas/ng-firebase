@@ -13,7 +13,7 @@ import { AppEnterModule } from "./app-enter/app-enter.module";
 import { RouterModule, Route } from "@angular/router";
 import { SharedModule } from "./shared/shared.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
-import { ReactiveFormsModule, FormsModule } from "@angular/forms"; // <-- #1 import module
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 const routes: Route[] = [{ path: "", redirectTo: "login", pathMatch: "full" }];
 
@@ -21,6 +21,7 @@ const routes: Route[] = [{ path: "", redirectTo: "login", pathMatch: "full" }];
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
 
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
