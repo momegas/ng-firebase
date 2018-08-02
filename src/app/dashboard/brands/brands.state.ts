@@ -1,14 +1,7 @@
 import { State, NgxsOnInit, Store, Selector, Action, StateContext } from "@ngxs/store";
 import { Brand } from "./brand";
 import * as actions from "./brands.actions";
-import {
-  AngularFirestoreCollection,
-  AngularFirestore,
-  DocumentChangeAction
-} from "angularfire2/firestore";
-import { Observable } from "rxjs";
-import { map, filter, tap } from "rxjs/operators";
-import { BrandsService } from "./brand.service";
+import { BrandsService } from "./brands.service";
 
 export interface BrandsStateModel {
   brands: Brand[];

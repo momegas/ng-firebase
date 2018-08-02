@@ -1,0 +1,21 @@
+<p>
+  products!
+</p>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <label>Name:
+    <input formControlName="name">
+  </label>
+  <br>
+  <label>Slug:
+    <input formControlName="slug">
+  </label>
+  <button type="submit" [disabled]="!this.productForm.valid">Submit</button>
+</form>
+
+
+<ul>
+  <li *ngFor="let product of (products$ | async)">{{product.name}}
+    <span (click)="onDelete(product.id)">&nbsp;X</span>
+  </li>
+</ul>
