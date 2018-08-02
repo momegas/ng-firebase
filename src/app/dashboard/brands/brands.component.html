@@ -10,10 +10,11 @@
   <label>Slug:
     <input formControlName="slug">
   </label>
+  <br>
   <button type="submit" [disabled]="!this.brandForm.valid">Submit</button>
 </form>
 
-
+<hr>
 <ul>
   <li *ngFor="let brand of (brands$ | async)">{{brand.name}}
     <span (click)="onDelete(brand.id)">&nbsp;X</span>

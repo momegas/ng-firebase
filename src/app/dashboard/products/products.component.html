@@ -10,9 +10,17 @@
   <label>Slug:
     <input formControlName="slug">
   </label>
+  <br>
+  <label>Brand:
+    <select formControlName="brand">
+      <option *ngFor="let brand of (brands$ | async)" [value]="brand.id">{{brand.name}}</option>
+    </select>
+  </label>
+  <br> {{this.productForm.value | json}}
   <button type="submit" [disabled]="!this.productForm.valid">Submit</button>
 </form>
 
+<hr>
 
 <ul>
   <li *ngFor="let product of (products$ | async)">{{product.name}}

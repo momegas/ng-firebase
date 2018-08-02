@@ -5,6 +5,8 @@ import { ProductsState } from "./products.state";
 import { Observable } from "rxjs";
 import { Product } from "./product";
 import { Add, Remove } from "./products.actions";
+import { BrandState } from "../brands/brands.state";
+import { Brand } from "../brands/brand";
 
 @Component({
   selector: "app-products",
@@ -13,7 +15,8 @@ import { Add, Remove } from "./products.actions";
 })
 export class ProductsComponent {
   public productForm: FormGroup;
-  @Select(ProductsState.brands) public products$: Observable<Product[]>;
+  @Select(ProductsState.products) public products$: Observable<Product[]>;
+  @Select(BrandState.brands) public brands$: Observable<Brand[]>;
 
   constructor(private fb: FormBuilder, private store: Store) {
     this.createForm();
@@ -22,7 +25,8 @@ export class ProductsComponent {
   createForm() {
     this.productForm = this.fb.group({
       name: ["", Validators.required],
-      slug: ["", Validators.required]
+      slug: ["", Validators.required],
+      brand: ["", Validators.required]
     });
   }
 

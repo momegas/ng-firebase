@@ -8,7 +8,7 @@ export interface productsStateModel {
 }
 
 @State<productsStateModel>({
-  name: "brands",
+  name: "products",
   defaults: { products: [] }
 })
 export class ProductsState implements NgxsOnInit {
@@ -21,7 +21,7 @@ export class ProductsState implements NgxsOnInit {
   ngxsOnInit() {}
 
   @Selector()
-  static brands(state: productsStateModel): Product[] {
+  static products(state: productsStateModel): Product[] {
     return state.products;
   }
 
