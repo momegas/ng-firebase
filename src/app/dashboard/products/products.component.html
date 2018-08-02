@@ -16,9 +16,22 @@
       <option *ngFor="let brand of (brands$ | async)" [value]="brand.id">{{brand.name}}</option>
     </select>
   </label>
-  <br> {{this.productForm.value | json}}
-  <button type="submit" [disabled]="!this.productForm.valid">Submit</button>
+  <br>
+  <label>image:
+    <input type="file" (change)="uploadFile($event)">
+    <span *ngIf="(uploadPercent | async) !== 0 || (uploadPercent | async) !== 100"> {{uploadPercent | async}}</span>
+  </label>
+  <br>
+  <span *ngFor="let image of productForm.value?.images">
+    <img width="100" height="100" [src]="image?.url" alt="{{image?.url}}">
+  </span>
+
+  <br>
+  <br>
+  <button type="submit" [disabled]="!productForm.valid">Submit</button>
 </form>
+
+{{productForm.value | json}}
 
 <hr>
 
