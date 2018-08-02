@@ -6,9 +6,11 @@ import { NgxsModule } from "@ngxs/store";
 import { routes } from "./dashboard.routes";
 import { BrandsComponent } from "./brands/brands.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BrandState } from "./brands/brands.state";
+import { BrandsState } from "./brands/brands.state";
 import { ProductsComponent } from "./products/products.component";
 import { ProductsState } from "./products/products.state";
+import { FilesComponent } from "./files/files.component";
+import { FilesState } from "./files/files.state";
 
 @NgModule({
   imports: [
@@ -16,8 +18,8 @@ import { ProductsState } from "./products/products.state";
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    NgxsModule.forFeature([BrandState, ProductsState])
+    NgxsModule.forFeature([BrandsState, ProductsState, FilesState])
   ],
-  declarations: [HomeComponent, BrandsComponent, ProductsComponent]
+  declarations: [HomeComponent, BrandsComponent, ProductsComponent, FilesComponent]
 })
 export class DashboardModule {}

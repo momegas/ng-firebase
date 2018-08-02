@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Store, Select } from "@ngxs/store";
 import { Add, Remove } from "./brands.actions";
-import { BrandState } from "./brands.state";
+import { BrandsState } from "./brands.state";
 import { Observable } from "rxjs";
 import { Brand } from "./brand";
 
@@ -13,7 +13,7 @@ import { Brand } from "./brand";
 })
 export class BrandsComponent {
   public brandForm: FormGroup;
-  @Select(BrandState.brands) public brands$: Observable<Brand[]>;
+  @Select(BrandsState.brands) public brands$: Observable<Brand[]>;
 
   constructor(private fb: FormBuilder, private store: Store) {
     this.createForm();

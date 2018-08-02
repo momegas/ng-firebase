@@ -29,7 +29,7 @@ const routes: Route[] = [{ path: "", redirectTo: "login", pathMatch: "full" }];
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
 
     NgxsModule.forRoot([]),
-    NgxsLoggerPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot({ collapsed: true }),
 
     RouterModule.forRoot(routes),
 

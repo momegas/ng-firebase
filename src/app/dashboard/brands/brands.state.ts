@@ -11,7 +11,7 @@ export interface BrandsStateModel {
   name: "brands",
   defaults: { brands: [] }
 })
-export class BrandState implements NgxsOnInit {
+export class BrandsState implements NgxsOnInit {
   constructor(private store: Store, private service: BrandsService) {
     service.getAll().subscribe((brands: Brand[]) => this.store.dispatch(new actions.Set(brands)));
   }

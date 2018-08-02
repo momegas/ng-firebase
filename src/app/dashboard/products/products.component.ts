@@ -5,7 +5,7 @@ import { ProductsState } from "./products.state";
 import { Observable } from "rxjs";
 import { Product } from "./product";
 import { Add, Remove } from "./products.actions";
-import { BrandState } from "../brands/brands.state";
+import { BrandsState } from "../brands/brands.state";
 import { Brand } from "../brands/brand";
 import { AngularFireStorage, AngularFireStorageReference } from "angularfire2/storage";
 import { finalize } from "rxjs/operators";
@@ -19,7 +19,7 @@ export class ProductsComponent {
   public productForm: FormGroup;
   public uploadPercent: Observable<number>;
   @Select(ProductsState.products) public products$: Observable<Product[]>;
-  @Select(BrandState.brands) public brands$: Observable<Brand[]>;
+  @Select(BrandsState.brands) public brands$: Observable<Brand[]>;
 
   constructor(private fb: FormBuilder, private store: Store, private storage: AngularFireStorage) {
     this.createForm();
