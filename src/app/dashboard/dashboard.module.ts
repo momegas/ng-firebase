@@ -20,7 +20,8 @@ import {
   MatListModule
 } from "@angular/material";
 import { MatDialogModule } from "@angular/material/dialog";
-import { FormComponent } from "./brands/components/form/form.component";
+import { FormComponent as BrandsFormComponent } from "./brands/components/form/form.component";
+import { FormComponent as ProductsFormComponent } from "./products/components/form/form.component";
 
 @NgModule({
   imports: [
@@ -37,7 +38,14 @@ import { FormComponent } from "./brands/components/form/form.component";
     MatListModule,
     MatDialogModule
   ],
-  declarations: [HomeComponent, BrandsComponent, ProductsComponent, FilesComponent, FormComponent],
-  entryComponents: [FormComponent]
+  declarations: [
+    HomeComponent,
+    BrandsComponent,
+    ProductsComponent,
+    FilesComponent,
+    ProductsFormComponent,
+    BrandsFormComponent
+  ],
+  entryComponents: [ProductsFormComponent, BrandsFormComponent]
 })
 export class DashboardModule {}
