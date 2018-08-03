@@ -71,5 +71,12 @@ export class ProductsComponent {
     this.store.dispatch(new productsActions.Remove(id));
   }
 
+  onRemoveImage(url: string) {
+    this.productForm.setControl(
+      "images",
+      this.fb.array([...this.productForm.value.images.filter(i => i.url !== url)])
+    );
+  }
+
   onSubmitEdit() {}
 }
