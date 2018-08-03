@@ -33,9 +33,9 @@ const routes: Route[] = [{ path: "", redirectTo: "login", pathMatch: "full" }];
 
     RouterModule.forRoot(routes),
 
+    SharedModule,
     AppEnterModule,
-    DashboardModule,
-    SharedModule
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

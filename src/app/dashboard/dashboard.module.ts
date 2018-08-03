@@ -12,14 +12,32 @@ import { ProductsState } from "./products/products.state";
 import { FilesComponent } from "./files/files.component";
 import { FilesState } from "./files/files.state";
 
+import {
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule
+} from "@angular/material";
+import { MatDialogModule } from "@angular/material/dialog";
+import { FormComponent } from "./brands/components/form/form.component";
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    NgxsModule.forFeature([BrandsState, ProductsState, FilesState])
+    NgxsModule.forFeature([BrandsState, ProductsState, FilesState]),
+
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatDialogModule
   ],
-  declarations: [HomeComponent, BrandsComponent, ProductsComponent, FilesComponent]
+  declarations: [HomeComponent, BrandsComponent, ProductsComponent, FilesComponent, FormComponent],
+  entryComponents: [FormComponent]
 })
 export class DashboardModule {}

@@ -1,18 +1,5 @@
-<p>
-  brands!
-</p>
-
-<form [formGroup]="brandForm" (ngSubmit)="onSubmit()">
-  <label>Name:
-    <input formControlName="name">
-  </label>
-  <br>
-  <label>Slug:
-    <input formControlName="slug">
-  </label>
-  <br>
-  <button type="submit" [disabled]="!brandForm.valid">Submit</button>
-</form>
+<p>brands!</p>
+<button mat-raised-button color="primary" (click)="openDialog()">New</button>
 
 <hr>
 <ul>
