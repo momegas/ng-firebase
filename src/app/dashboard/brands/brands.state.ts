@@ -37,4 +37,9 @@ export class BrandsState implements NgxsOnInit {
   remove(ctx: StateContext<BrandsStateModel>, { id }: actions.Remove) {
     this.service.delete(id);
   }
+
+  @Action(actions.Edit)
+  edit(ctx: StateContext<BrandsStateModel>, { brand }: actions.Edit) {
+    this.service.edit(brand);
+  }
 }

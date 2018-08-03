@@ -26,7 +26,10 @@ export class BrandsService {
     this.itemsCollection.doc(id).delete();
   }
 
-  public edit(brand: Brand): void {}
+  public edit(brand: Brand): void {
+    console.log("fwefe");
+    this.afs.doc<Brand>(`brands/${brand.id}`).update(brand);
+  }
 
   public getAll(): Observable<Brand[]> {
     return this.itemsCollection.snapshotChanges().pipe(

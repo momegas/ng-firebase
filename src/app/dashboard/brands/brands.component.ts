@@ -17,8 +17,13 @@ export class BrandsComponent {
 
   constructor(private store: Store, public dialog: MatDialog) {}
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(FormComponent, { width: "450px" });
+  openDialog(brand?: Brand) {
+    const width = "450px";
+    if (brand) {
+      const dialogRef = this.dialog.open(FormComponent, { width, data: brand });
+      return;
+    }
+    const dialogRef = this.dialog.open(FormComponent, { width });
   }
 
   onDelete(id: string) {

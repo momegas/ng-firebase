@@ -1,8 +1,9 @@
-import { Component } from "@angular/core";
-import { MatDialogRef } from "@angular/material";
+import { Component, Inject } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Store } from "@ngxs/store";
-import { Add } from "../../brands.actions";
+import { Add, Edit } from "../../brands.actions";
+import { Brand } from "../../brand";
 
 @Component({
   selector: "app-form",
@@ -15,23 +16,30 @@ export class FormComponent {
   constructor(
     private fb: FormBuilder,
     private store: Store,
-    public dialogRef: MatDialogRef<FormComponent>
+    public dialogRef: MatDialogRef<FormComponent>,
+    @Inject(MAT_DIALOG_DATA) public brand: Brand
   ) {
-    this.createForm();
+    this.createForm(brand);
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  createForm() {
+  createForm(brand: Brand) {
     this.brandForm = this.fb.group({
-      name: ["", Validators.required],
-      slug: ["", Validators.required]
+      name: [(brand && brand.name) || "", Validators.required],
+      slug: [(brand && brand.slug) || "", Validators.required]
     });
   }
 
   onSubmit() {
+    if (this.brand) {
+      this.store.dispatch(new Edit({ id: this.brand.id, ...this.brandForm.value }));
+      this.brandForm.reset();
+      this.dialogRef.close();
+      return;
+    }
     this.store.dispatch(new Add(this.brandForm.value));
     this.brandForm.reset();
   }
