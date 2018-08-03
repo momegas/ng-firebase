@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Store, Select } from "@ngxs/store";
-import { Add, Remove } from "./files.actions";
+import { Upload, Remove } from "./files.actions";
 import { FilesState } from "./files.state";
 import { Observable } from "rxjs";
 import { File } from "./file";
@@ -17,7 +17,7 @@ export class FilesComponent {
   constructor(private store: Store) {}
 
   uploadFile(event) {
-    this.store.dispatch(new Add(event.target.files[0]));
+    this.store.dispatch(new Upload(event.target.files[0]));
   }
 
   onDelete(id: string, name: string) {

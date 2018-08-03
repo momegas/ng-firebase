@@ -28,9 +28,14 @@ export class FilesState implements NgxsOnInit {
     ctx.setState({ files });
   }
 
+  @Action(actions.Upload)
+  upload(ctx: StateContext<FilesBrandsStateModel>, { file }: actions.Upload) {
+    this.service.upload(file);
+  }
+
   @Action(actions.Add)
   add(ctx: StateContext<FilesBrandsStateModel>, { file }: actions.Add) {
-    this.service.upload(file);
+    this.service.add(file);
   }
 
   @Action(actions.Remove)

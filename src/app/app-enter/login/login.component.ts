@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AngularFireAuth } from "angularfire2/auth";
-import { auth } from "firebase";
+import { auth } from "firebase/app";
 import { Select } from "@ngxs/store";
 import { AuthState } from "../../shared/store/auth.state";
 import { Observable } from "rxjs";
