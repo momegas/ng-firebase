@@ -10,13 +10,13 @@ import { Brand } from "../../brand";
   templateUrl: "./form.component.html",
   styleUrls: ["./form.component.css"]
 })
-export class FormComponent {
+export class BrandsFormComponent {
   public brandForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private store: Store,
-    public dialogRef: MatDialogRef<FormComponent>,
+    public dialogRef: MatDialogRef<BrandsFormComponent>,
     @Inject(MAT_DIALOG_DATA) public brand: Brand
   ) {
     this.createForm(brand);

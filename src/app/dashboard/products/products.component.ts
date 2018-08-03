@@ -7,7 +7,7 @@ import { BrandsState } from "../brands/brands.state";
 import { Brand } from "../brands/brand";
 import * as productsActions from "./products.actions";
 import { MatDialog } from "@angular/material";
-import { FormComponent } from "./components/form/form.component";
+import { ProductFormComponent } from "./components/form/form.component";
 
 @Component({
   selector: "app-products",
@@ -22,10 +22,10 @@ export class ProductsComponent {
   openDialog(product?: Product) {
     const width = "450px";
     if (product) {
-      const dialogRef = this.dialog.open(FormComponent, { width, data: product });
+      const dialogRef = this.dialog.open(ProductFormComponent, { width, data: product });
       return;
     }
-    const dialogRef = this.dialog.open(FormComponent, { width });
+    const dialogRef = this.dialog.open(ProductFormComponent, { width });
   }
 
   onDelete(id: string) {

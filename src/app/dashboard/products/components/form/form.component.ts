@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
 import { Store, Select } from "@ngxs/store";
@@ -16,7 +16,7 @@ import { Product } from "../../product";
   templateUrl: "./form.component.html",
   styleUrls: ["./form.component.css"]
 })
-export class FormComponent implements OnInit {
+export class ProductFormComponent {
   public productForm: FormGroup;
   public uploadPercent: Observable<number>;
   @Select(BrandsState.brands) public brands$: Observable<Brand[]>;
@@ -25,7 +25,7 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private store: Store,
     private storage: AngularFireStorage,
-    public dialogRef: MatDialogRef<FormComponent>,
+    public dialogRef: MatDialogRef<ProductFormComponent>,
     @Inject(MAT_DIALOG_DATA) public product: Product
   ) {
     this.createForm(product);
@@ -86,6 +86,4 @@ export class FormComponent implements OnInit {
     this.productForm.reset();
     this.productForm.setControl("images", this.fb.array([]));
   }
-
-  ngOnInit() {}
 }

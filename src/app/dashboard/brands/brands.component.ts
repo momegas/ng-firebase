@@ -5,7 +5,7 @@ import { BrandsState } from "./brands.state";
 import { Observable } from "rxjs";
 import { Brand } from "./brand";
 import { MatDialog } from "@angular/material";
-import { FormComponent } from "./components/form/form.component";
+import { BrandsFormComponent } from "./components/form/form.component";
 
 @Component({
   selector: "app-brands",
@@ -20,10 +20,10 @@ export class BrandsComponent {
   openDialog(brand?: Brand) {
     const width = "450px";
     if (brand) {
-      const dialogRef = this.dialog.open(FormComponent, { width, data: brand });
+      const dialogRef = this.dialog.open(BrandsFormComponent, { width, data: brand });
       return;
     }
-    const dialogRef = this.dialog.open(FormComponent, { width });
+    const dialogRef = this.dialog.open(BrandsFormComponent, { width });
   }
 
   onDelete(id: string) {

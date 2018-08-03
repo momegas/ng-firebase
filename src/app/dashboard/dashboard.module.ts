@@ -11,7 +11,6 @@ import { ProductsComponent } from "./products/products.component";
 import { ProductsState } from "./products/products.state";
 import { FilesComponent } from "./files/files.component";
 import { FilesState } from "./files/files.state";
-
 import {
   MatToolbarModule,
   MatButtonModule,
@@ -20,8 +19,8 @@ import {
   MatListModule
 } from "@angular/material";
 import { MatDialogModule } from "@angular/material/dialog";
-import { FormComponent as BrandsFormComponent } from "./brands/components/form/form.component";
-import { FormComponent as ProductsFormComponent } from "./products/components/form/form.component";
+import { BrandsFormComponent } from "./brands/components/form/form.component";
+import { ProductFormComponent } from "./products/components/form/form.component";
 
 @NgModule({
   imports: [
@@ -43,9 +42,9 @@ import { FormComponent as ProductsFormComponent } from "./products/components/fo
     BrandsComponent,
     ProductsComponent,
     FilesComponent,
-    ProductsFormComponent,
+    ProductFormComponent,
     BrandsFormComponent
   ],
-  entryComponents: [ProductsFormComponent, BrandsFormComponent]
+  entryComponents: [ProductFormComponent, BrandsFormComponent]
 })
 export class DashboardModule {}
