@@ -10,5 +10,6 @@
 <ul>
   <li *ngFor="let product of (products$ | async)">{{product.name}}
     <span (click)="onDelete(product.id)">&nbsp;X</span>
+    <span (click)="openDialog(product)">&nbsp;E</span>
   </li>
 </ul>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
 import { Store, Select } from "@ngxs/store";
@@ -8,6 +8,8 @@ import * as filesActions from "../../../files/files.actions";
 import * as productsActions from "../../products.actions";
 import { BrandsState } from "../../../brands/brands.state";
 import { Brand } from "../../../brands/brand";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
+import { Product } from "../../product";
 
 @Component({
   selector: "app-form",
@@ -19,16 +21,22 @@ export class FormComponent implements OnInit {
   public uploadPercent: Observable<number>;
   @Select(BrandsState.brands) public brands$: Observable<Brand[]>;
 
-  constructor(private fb: FormBuilder, private store: Store, private storage: AngularFireStorage) {
-    this.createForm();
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private storage: AngularFireStorage,
+    public dialogRef: MatDialogRef<FormComponent>,
+    @Inject(MAT_DIALOG_DATA) public product: Product
+  ) {
+    this.createForm(product);
   }
 
-  private createForm() {
+  private createForm(product: Product) {
     this.productForm = this.fb.group({
-      name: ["", Validators.required],
-      slug: ["", Validators.required],
-      brand: ["", Validators.required],
-      images: this.fb.array([])
+      name: [(product && product.name) || "", Validators.required],
+      slug: [(product && product.slug) || "", Validators.required],
+      brand: [(product && product.brand) || "", Validators.required],
+      images: this.fb.array((product && product.images) || [])
     });
   }
 
@@ -62,6 +70,14 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.product) {
+      this.store.dispatch(
+        new productsActions.Edit({ id: this.product.id, ...this.productForm.value })
+      );
+      this.productForm.reset();
+      this.dialogRef.close();
+      return;
+    }
     this.store.dispatch(new productsActions.Add(this.productForm.value));
     this.resetForm();
   }

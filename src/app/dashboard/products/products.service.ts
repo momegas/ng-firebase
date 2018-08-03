@@ -26,7 +26,9 @@ export class ProductsService {
     this.itemsCollection.doc(id).delete();
   }
 
-  public edit(product: Product): void {}
+  public edit(product: Product): void {
+    this.afs.doc(`products/${product.id}`).update(product);
+  }
 
   public getAll(): Observable<Product[]> {
     return this.itemsCollection.snapshotChanges().pipe(

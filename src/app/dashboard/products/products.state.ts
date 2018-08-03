@@ -35,6 +35,11 @@ export class ProductsState implements NgxsOnInit {
     this.service.add(product);
   }
 
+  @Action(actions.Edit)
+  edit(ctx: StateContext<productsStateModel>, { product }: actions.Edit) {
+    this.service.edit(product);
+  }
+
   @Action(actions.Remove)
   remove(ctx: StateContext<productsStateModel>, { id }: actions.Remove) {
     this.service.delete(id);
